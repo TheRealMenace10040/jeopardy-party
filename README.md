@@ -2,7 +2,7 @@
 
 A party-friendly Jeopardy-style game. The host runs the game from a phone or tablet, the board shows on a TV, and up to six teams buzz in on their phones. Players never sign in; hosts sign in with Google to save their boards.
 
-Full design: [docs/design-spec.md](docs/design-spec.md).
+Full design: [docs/design-spec.md](docs/design-spec.md). Running a party: [docs/event-day.md](docs/event-day.md).
 
 ## How a game works
 
