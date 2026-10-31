@@ -55,5 +55,5 @@ Google OAuth client: Google Cloud project `jeopardy-513301`, redirect URI `https
 Live: **https://jeopardy-party-five.vercel.app** (Vercel project `the-real-menace/jeopardy-party`).
 
 - Host: `/host` · TV: `/tv` · Players: `/join`
-- Deploy: `npx vercel deploy --prod` from the project folder. The two `VITE_SUPABASE_*` values are set as Vercel production environment variables.
+- Deploy: every push to `main` on GitHub deploys automatically (or run `npx vercel deploy --prod` from the project folder). The two `VITE_SUPABASE_*` values are set as Vercel production environment variables.
 - Supabase Auth → URL Configuration: Site URL is the live address; redirect URLs allow the live address and `http://localhost:5221/**`.
