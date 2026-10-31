@@ -6,6 +6,7 @@ import { money } from '../components/Scoreboard';
 import { useRoom } from '../lib/room';
 import { errorMessage, supabase, syncClock } from '../lib/supabase';
 import type { RoomState, Team } from '../lib/types';
+import { useWakeLock } from '../lib/wakeLock';
 
 interface Membership {
   teamId: string;
@@ -112,21 +113,6 @@ function JoinForm({ code, state, onJoined }: { code: string; state: RoomState; o
       </form>
     </div>
   );
-}
-
-function useWakeLock(active: boolean) {
-  useEffect(() => {
-    if (!active || !('wakeLock' in navigator)) return;
-    let lock: WakeLockSentinel | null = null;
-    const request = () => navigator.wakeLock.request('screen').then((l) => (lock = l)).catch(() => {});
-    request();
-    const onVisible = () => document.visibilityState === 'visible' && request();
-    document.addEventListener('visibilitychange', onVisible);
-    return () => {
-      document.removeEventListener('visibilitychange', onVisible);
-      lock?.release().catch(() => {});
-    };
-  }, [active]);
 }
 
 function Buzzer({ code, state: s, me, team }: { code: string; state: RoomState; me: Membership; team: Team }) {

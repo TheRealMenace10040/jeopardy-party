@@ -8,6 +8,7 @@ import { signedImageUrl } from '../lib/images';
 import { hostUpdate, useRoom } from '../lib/room';
 import { errorMessage, serverNow, supabase, syncClock } from '../lib/supabase';
 import type { Board, RoomPrivate, RoomState, Team } from '../lib/types';
+import { useWakeLock } from '../lib/wakeLock';
 
 interface Loaded {
   code: string;
@@ -55,6 +56,7 @@ function HostConsole({ roomId, code, board, priv }: Loaded & { roomId: string })
   const [showTv, setShowTv] = useState(false);
   const undoStack = useRef<RoomState[]>([]);
   const [undoCount, setUndoCount] = useState(0);
+  useWakeLock(true);
 
   const run = useCallback(
     async (apply: (s: RoomState) => RoomState, opts: { undoable?: boolean } = {}) => {
